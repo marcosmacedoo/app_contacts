@@ -49,72 +49,75 @@ class _LoginPage extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Image(
-                width: 88,
-                image: NetworkImage(
-                    'https://pbs.twimg.com/profile_images/438771627854024704/Az4OY07a_400x400.png'),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 32.0),
-                child: TextField(
-                    keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) => _username = value,
-                    decoration: const InputDecoration(label: Text("Email"))),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0),
-                child: TextField(
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: !_isPasswordVisible,
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    onChanged: (value) => _password = value,
-                    decoration: InputDecoration(
-                        label: const Text("Senha"),
-                        suffixIcon: IconButton(
-                            onPressed: _tooglePasswordVisibility,
-                            icon: Icon(_isPasswordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off)))),
-              ),
-              Padding(
+        child: SingleChildScrollView(
+          reverse: true, // Form ficar visível
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Image(
+                  width: 88,
+                  image: NetworkImage(
+                      'https://pbs.twimg.com/profile_images/438771627854024704/Az4OY07a_400x400.png'),
+                ),
+                Padding(
                   padding: const EdgeInsets.only(top: 32.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 48,
-                    child: ElevatedButton(
-                        onPressed: _singIn,
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5)),
-                          backgroundColor: Colors.yellow[600],
-                        ),
-                        child: const Text("Entrar")),
-                  )),
-              const Padding(
-                padding: EdgeInsets.only(top: 56.0),
-                child: Text('Não possui uma conta?'),
-              ),
-              Padding(
+                  child: TextField(
+                      keyboardType: TextInputType.emailAddress,
+                      onChanged: (value) => _username = value,
+                      decoration: const InputDecoration(label: Text("Email"))),
+                ),
+                Padding(
                   padding: const EdgeInsets.only(top: 16.0),
-                  child: Builder(builder: (context) {
-                    return TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const CreateUserScreen(),
+                  child: TextField(
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: !_isPasswordVisible,
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      onChanged: (value) => _password = value,
+                      decoration: InputDecoration(
+                          label: const Text("Senha"),
+                          suffixIcon: IconButton(
+                              onPressed: _tooglePasswordVisibility,
+                              icon: Icon(_isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off)))),
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(top: 32.0),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: ElevatedButton(
+                          onPressed: _singIn,
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            backgroundColor: Colors.yellow[600],
+                          ),
+                          child: const Text("Entrar")),
+                    )),
+                const Padding(
+                  padding: EdgeInsets.only(top: 56.0),
+                  child: Text('Não possui uma conta?'),
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: Builder(builder: (context) {
+                      return TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const CreateUserScreen(),
+                            ));
+                          },
+                          child: const Text(
+                            'Crie uma agora',
+                            style: TextStyle(color: Colors.green),
                           ));
-                        },
-                        child: const Text(
-                          'Crie uma agora',
-                          style: TextStyle(color: Colors.green),
-                        ));
-                  }))
-            ],
+                    }))
+              ],
+            ),
           ),
         ),
       ),
