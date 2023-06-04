@@ -1,3 +1,4 @@
+import 'package:app_contacts/pages/create_user.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
@@ -89,14 +90,24 @@ class _LoginPage extends State<LoginPage> {
                         ),
                         child: const Text("Entrar")),
                   )),
+              const Padding(
+                padding: EdgeInsets.only(top: 56.0),
+                child: Text('Não possui uma conta?'),
+              ),
               Padding(
-                  padding: const EdgeInsets.only(top: 48.0),
-                  child: TextButton(
-                      onPressed: () => print('Clicou'),
-                      child: const Text(
-                        'Cadastra-se',
-                        style: TextStyle(color: Colors.green),
-                      )))
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Builder(builder: (context) {
+                    return TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const CreateUserScreen(),
+                          ));
+                        },
+                        child: const Text(
+                          'Crie uma agora',
+                          style: TextStyle(color: Colors.green),
+                        ));
+                  }))
             ],
           ),
         ),
