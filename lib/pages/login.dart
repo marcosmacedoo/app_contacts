@@ -1,4 +1,5 @@
 import 'package:app_contacts/pages/create_user.dart';
+import 'package:app_contacts/pages/home.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
@@ -10,6 +11,7 @@ class Login extends StatelessWidget {
     return MaterialApp(
       title: 'App',
       theme: ThemeData(
+        fontFamily: 'Inter',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
         useMaterial3: true,
       ),
@@ -31,7 +33,11 @@ class _LoginPage extends State<LoginPage> {
   String _password = '';
   bool _isPasswordVisible = false;
 
-  void _singIn() {}
+  void _singIn() {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => const HomeScreen(),
+    ));
+  }
 
   void _tooglePasswordVisibility() {
     setState(() {
