@@ -1,3 +1,4 @@
+import 'package:app_contacts/pages/contacts.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -40,7 +41,11 @@ class HomeScreen extends StatelessWidget {
                         width: 200,
                         height: 200,
                         child: ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const ContactsScreen(),
+                            ));
+                          },
                           icon: const Icon(Icons.person, size: 24),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.yellow[600],
