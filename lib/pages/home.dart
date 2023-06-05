@@ -37,8 +37,8 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
-                        width: 200,
-                        height: 200,
+                        width: 150,
+                        height: 150,
                         child: ElevatedButton.icon(
                           onPressed: () {},
                           icon: const Icon(Icons.person, size: 24),
@@ -55,8 +55,8 @@ class HomeScreen extends StatelessWidget {
                           ),
                         )),
                     SizedBox(
-                        width: 200,
-                        height: 200,
+                        width: 150,
+                        height: 150,
                         child: ElevatedButton.icon(
                           onPressed: () {},
                           icon: const Icon(
