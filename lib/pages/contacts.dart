@@ -8,7 +8,7 @@ class ContactsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Meus contatos',
-            style: TextStyle(fontWeight: FontWeight.bold)),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
         backgroundColor: Colors.yellow,
         centerTitle: true,
       ),
@@ -23,10 +23,10 @@ class ContactsScreen extends StatelessWidget {
           Card(
               elevation: 0,
               child: ListTile(
-                leading: const Icon(Icons.person),
+                // leading: const Icon(Icons.person),
                 title: const Text('Marcos Macedo'),
                 subtitle: const Text('(86) 9 9502-8103'),
-                iconColor: Theme.of(context).colorScheme.inverseSurface,
+                // iconColor: Theme.of(context).colorScheme.inverseSurface,
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [

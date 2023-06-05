@@ -8,8 +8,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            const Text('Início', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text('Início',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
         backgroundColor: Colors.yellow,
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -38,8 +38,8 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
-                        width: 200,
-                        height: 200,
+                        width: 150,
+                        height: 100,
                         child: ElevatedButton.icon(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
@@ -60,8 +60,8 @@ class HomeScreen extends StatelessWidget {
                           ),
                         )),
                     SizedBox(
-                        width: 200,
-                        height: 200,
+                        width: 150,
+                        height: 100,
                         child: ElevatedButton.icon(
                           onPressed: () {},
                           icon: const Icon(
