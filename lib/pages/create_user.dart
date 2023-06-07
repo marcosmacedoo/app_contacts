@@ -37,7 +37,7 @@ class _CreateUserScreen extends State<CreateUserScreen> {
             InputLarge(
                 controller: _nameController,
                 keyboardType: TextInputType.name,
-                labelText: 'Nome'),
+                labelText: 'Nome e Sobrenome'),
             InputLarge(
                 controller: _emailController,
                 keyboardType: TextInputType.name,
