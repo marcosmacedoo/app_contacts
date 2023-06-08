@@ -1,4 +1,5 @@
 import 'package:app_contacts/core/components/input_large.dart';
+import 'package:app_contacts/core/components/primary_button.dart';
 import 'package:flutter/material.dart';
 
 class CreateUserScreen extends StatefulWidget {
@@ -21,7 +22,6 @@ class _CreateUserScreen extends State<CreateUserScreen> {
         title: const Text('Cadastre-se', style: TextStyle(fontSize: 18)),
         backgroundColor: Colors.yellow,
         centerTitle: true,
-        automaticallyImplyLeading: false,
       ),
       body: Center(
           child: Padding(
@@ -37,7 +37,7 @@ class _CreateUserScreen extends State<CreateUserScreen> {
             InputLarge(
                 controller: _nameController,
                 keyboardType: TextInputType.name,
-                labelText: 'Nome e Sobrenome'),
+                labelText: 'Nome'),
             InputLarge(
                 controller: _emailController,
                 keyboardType: TextInputType.name,
@@ -46,20 +46,10 @@ class _CreateUserScreen extends State<CreateUserScreen> {
                 controller: _passwordController,
                 keyboardType: TextInputType.name,
                 labelText: 'Senha'),
-            Padding(
-                padding: const EdgeInsets.only(top: 32.0),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: ElevatedButton(
-                      onPressed: _signup,
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        backgroundColor: Colors.yellow[600],
-                      ),
-                      child: const Text("Cadastrar")),
-                )),
+            PrimaryButton(
+              labelText: "Cadastrar",
+              onPressed: _signup,
+            )
           ],
         ),
       )),

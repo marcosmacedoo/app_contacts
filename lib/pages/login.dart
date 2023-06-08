@@ -1,3 +1,5 @@
+import 'package:app_contacts/core/components/input_large.dart';
+import 'package:app_contacts/core/components/primary_button.dart';
 import 'package:app_contacts/pages/create_user.dart';
 import 'package:app_contacts/pages/home.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +31,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPage extends State<LoginPage> {
-  String _username = '';
+  final TextEditingController _username = TextEditingController();
   String _password = '';
   bool _isPasswordVisible = false;
 
@@ -52,7 +54,8 @@ class _LoginPage extends State<LoginPage> {
         child: SingleChildScrollView(
           reverse: true, // Form ficar visível
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding:
+                const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -61,13 +64,10 @@ class _LoginPage extends State<LoginPage> {
                   image: NetworkImage(
                       'https://pbs.twimg.com/profile_images/438771627854024704/Az4OY07a_400x400.png'),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 32.0),
-                  child: TextField(
-                      keyboardType: TextInputType.emailAddress,
-                      onChanged: (value) => _username = value,
-                      decoration: const InputDecoration(label: Text("Email"))),
-                ),
+                InputLarge(
+                    controller: _username,
+                    keyboardType: TextInputType.emailAddress,
+                    labelText: "Email"),
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0),
                   child: TextField(
@@ -84,20 +84,10 @@ class _LoginPage extends State<LoginPage> {
                                   ? Icons.visibility
                                   : Icons.visibility_off)))),
                 ),
-                Padding(
-                    padding: const EdgeInsets.only(top: 32.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: 48,
-                      child: ElevatedButton(
-                          onPressed: _singIn,
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            backgroundColor: Colors.yellow[600],
-                          ),
-                          child: const Text("Entrar")),
-                    )),
+                PrimaryButton(
+                  labelText: "Entrar",
+                  onPressed: _singIn,
+                ),
                 const Padding(
                   padding: EdgeInsets.only(top: 56.0),
                   child: Text('Não possui uma conta?'),
