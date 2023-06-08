@@ -21,7 +21,6 @@ class _CreateUserScreen extends State<CreateUserScreen> {
         title: const Text('Cadastre-se', style: TextStyle(fontSize: 18)),
         backgroundColor: Colors.yellow,
         centerTitle: true,
-        automaticallyImplyLeading: false,
       ),
       body: Center(
           child: Padding(
@@ -37,7 +36,7 @@ class _CreateUserScreen extends State<CreateUserScreen> {
             InputLarge(
                 controller: _nameController,
                 keyboardType: TextInputType.name,
-                labelText: 'Nome e Sobrenome'),
+                labelText: 'Nome'),
             InputLarge(
                 controller: _emailController,
                 keyboardType: TextInputType.name,
