@@ -1,4 +1,5 @@
 import 'package:app_contacts/core/components/input_large.dart';
+import 'package:app_contacts/core/components/primary_button.dart';
 import 'package:app_contacts/pages/create_user.dart';
 import 'package:app_contacts/pages/home.dart';
 import 'package:flutter/material.dart';
@@ -83,20 +84,10 @@ class _LoginPage extends State<LoginPage> {
                                   ? Icons.visibility
                                   : Icons.visibility_off)))),
                 ),
-                Padding(
-                    padding: const EdgeInsets.only(top: 32.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: 48,
-                      child: ElevatedButton(
-                          onPressed: _singIn,
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            backgroundColor: Colors.yellow[600],
-                          ),
-                          child: const Text("Entrar")),
-                    )),
+                PrimaryButton(
+                  labelText: "Entrar",
+                  onPressed: _singIn,
+                ),
                 const Padding(
                   padding: EdgeInsets.only(top: 56.0),
                   child: Text('Não possui uma conta?'),
