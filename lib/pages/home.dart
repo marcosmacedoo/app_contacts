@@ -1,4 +1,5 @@
 import 'package:app_contacts/pages/contacts.dart';
+import 'package:app_contacts/pages/maps.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -63,7 +64,11 @@ class HomeScreen extends StatelessWidget {
                         width: 150,
                         height: 100,
                         child: ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Maps(),
+                            ));
+                          },
                           icon: const Icon(
                             Icons.map,
                             size: 24,
