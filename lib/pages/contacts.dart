@@ -1,3 +1,4 @@
+import 'package:app_contacts/pages/create_contact.dart';
 import 'package:flutter/material.dart';
 
 class ContactsScreen extends StatelessWidget {
@@ -13,7 +14,11 @@ class ContactsScreen extends StatelessWidget {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const CreateContact(),
+            ));
+          },
           backgroundColor: Colors.yellow,
           child: const Icon(Icons.add)),
       body: Center(
