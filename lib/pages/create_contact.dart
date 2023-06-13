@@ -27,41 +27,44 @@ class _CreateContact extends State<CreateContact> {
         centerTitle: true,
       ),
       body: Center(
-          child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.person_add_alt_1,
-              size: 128,
-              color: Colors.deepPurple,
-            ),
-            InputLarge(
-                controller: _nameController,
-                keyboardType: TextInputType.name,
-                labelText: 'Nome'),
-            InputLarge(
-                controller: _lastNameController,
-                keyboardType: TextInputType.name,
-                labelText: 'Sobrenome'),
-            InputLarge(
-                controller: _phoneController,
-                keyboardType: TextInputType.phone,
-                labelText: 'Celular'),
-            InputLarge(
-                controller: _latitudeController,
-                keyboardType: TextInputType.number,
-                labelText: 'Latitude'),
-            InputLarge(
-                controller: _longitudeController,
-                keyboardType: TextInputType.number,
-                labelText: 'Longitude'),
-            PrimaryButton(
-              labelText: "Cadastrar",
-              onPressed: _saveContact,
-            )
-          ],
+          child: SingleChildScrollView(
+        reverse: true,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.contact_phone,
+                size: 88,
+                color: Colors.deepPurple,
+              ),
+              InputLarge(
+                  controller: _nameController,
+                  keyboardType: TextInputType.name,
+                  labelText: 'Nome'),
+              InputLarge(
+                  controller: _lastNameController,
+                  keyboardType: TextInputType.name,
+                  labelText: 'Sobrenome'),
+              InputLarge(
+                  controller: _phoneController,
+                  keyboardType: TextInputType.phone,
+                  labelText: 'Celular'),
+              InputLarge(
+                  controller: _latitudeController,
+                  keyboardType: TextInputType.number,
+                  labelText: 'Latitude'),
+              InputLarge(
+                  controller: _longitudeController,
+                  keyboardType: TextInputType.number,
+                  labelText: 'Longitude'),
+              PrimaryButton(
+                labelText: "Cadastrar",
+                onPressed: _saveContact,
+              )
+            ],
+          ),
         ),
       )),
     );
