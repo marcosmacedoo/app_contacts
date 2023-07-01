@@ -1,27 +1,10 @@
+import 'package:app_contacts/controller/user_controller.dart';
 import 'package:app_contacts/core/components/input_large.dart';
 import 'package:app_contacts/core/components/primary_button.dart';
 import 'package:app_contacts/pages/create_user.dart';
 import 'package:app_contacts/pages/home.dart';
 import 'package:flutter/material.dart';
-
-class Login extends StatelessWidget {
-  const Login({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'App',
-      theme: ThemeData(
-        fontFamily: 'Inter',
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
-        useMaterial3: true,
-      ),
-      home: const LoginPage(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
+import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -32,13 +15,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPage extends State<LoginPage> {
   final TextEditingController _username = TextEditingController();
-  String _password = '';
+  final TextEditingController _password = TextEditingController();
   bool _isPasswordVisible = false;
+  final _controller = Modular.get<AuthController>();
 
-  void _singIn() {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const HomeScreen(),
-    ));
+  void _singIn() async {
+    await _controller.logIn(_username.text, _password.text, context);
   }
 
   void _tooglePasswordVisibility() {
@@ -71,11 +53,11 @@ class _LoginPage extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0),
                   child: TextField(
+                      controller: _password,
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: !_isPasswordVisible,
                       enableSuggestions: false,
                       autocorrect: false,
-                      onChanged: (value) => _password = value,
                       decoration: InputDecoration(
                           label: const Text("Senha"),
                           suffixIcon: IconButton(

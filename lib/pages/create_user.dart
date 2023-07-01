@@ -1,6 +1,9 @@
+import 'package:app_contacts/controller/user_controller.dart';
 import 'package:app_contacts/core/components/input_large.dart';
 import 'package:app_contacts/core/components/primary_button.dart';
+import 'package:app_contacts/pages/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class CreateUserScreen extends StatefulWidget {
   const CreateUserScreen({super.key});
@@ -9,11 +12,15 @@ class CreateUserScreen extends StatefulWidget {
 }
 
 class _CreateUserScreen extends State<CreateUserScreen> {
+  final _controller = Modular.get<AuthController>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _signup() {}
+  void _signup() async {
+    await _controller.singUp(_nameController.text, _emailController.text,
+        _passwordController.text, context);
+  }
 
   @override
   Widget build(BuildContext context) {
