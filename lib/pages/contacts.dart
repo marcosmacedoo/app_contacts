@@ -1,5 +1,6 @@
 import 'package:app_contacts/pages/create_contact.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class ContactsScreen extends StatelessWidget {
   const ContactsScreen({super.key});
@@ -15,9 +16,8 @@ class ContactsScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const CreateContact(),
-            ));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const CreateContact()));
           },
           backgroundColor: Colors.yellow,
           child: const Icon(Icons.add)),
