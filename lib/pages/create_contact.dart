@@ -1,6 +1,10 @@
+import 'dart:ffi';
+
+import 'package:app_contacts/controller/contact_controller.dart';
 import 'package:app_contacts/core/components/input_large.dart';
 import 'package:app_contacts/core/components/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class CreateContact extends StatefulWidget {
   const CreateContact({super.key});
@@ -14,8 +18,17 @@ class _CreateContact extends State<CreateContact> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _latitudeController = TextEditingController();
   final TextEditingController _longitudeController = TextEditingController();
+  final _controller = Modular.get<ContactController>();
 
-  void _saveContact() {}
+  void _saveContact() async {
+    await _controller.createContact(
+        _nameController.text,
+        _phoneController.text,
+        _lastNameController.text,
+        double.parse(_latitudeController.text),
+        double.parse(_longitudeController.text));
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +38,7 @@ class _CreateContact extends State<CreateContact> {
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.yellow,
         centerTitle: true,
+        automaticallyImplyLeading: true,
       ),
       body: Center(
           child: SingleChildScrollView(
@@ -60,9 +74,16 @@ class _CreateContact extends State<CreateContact> {
                   keyboardType: TextInputType.number,
                   labelText: 'Longitude'),
               PrimaryButton(
-                labelText: "Cadastrar",
-                onPressed: _saveContact,
-              )
+                  labelText: "Cadastrar",
+                  onPressed: () async {
+                    await _controller.createContact(
+                        _nameController.text,
+                        _phoneController.text,
+                        _lastNameController.text,
+                        double.parse(_latitudeController.text),
+                        double.parse(_longitudeController.text));
+                    Navigator.pop(context);
+                  }),
             ],
           ),
         ),

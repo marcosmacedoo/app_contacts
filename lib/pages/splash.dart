@@ -13,8 +13,8 @@ class _SplashPageState extends State<SplashPage> {
   final _controller = Modular.get<AuthController>();
   @override
   void initState() {
-    _controller.checkeToken();
     super.initState();
+    _controller.checkeToken();
   }
 
   @override
