@@ -3,14 +3,12 @@ import 'dart:convert';
 class Contact {
   final String id;
   final String name;
-  final String lastname;
   final String phone;
   final double latitude;
   final double longitude;
   final String userId;
   Contact(
       {required this.name,
-      required this.lastname,
       required this.phone,
       required this.id,
       required this.latitude,
@@ -34,7 +32,6 @@ class Contact {
       name: map['name'] as String,
       phone: map['phone'] as String,
       userId: map['user_id'] as String,
-      lastname: map['lastname'] as String,
       latitude: map['latitude'] as double,
       longitude: map['longitude'] as double,
     );
