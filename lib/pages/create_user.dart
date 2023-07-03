@@ -18,6 +18,7 @@ class _CreateUserScreen extends State<CreateUserScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   void _signup() async {
+    print('Criando usuarior');
     await _controller.singUp(_nameController.text, _emailController.text,
         _passwordController.text, context);
   }

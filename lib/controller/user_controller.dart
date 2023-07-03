@@ -13,6 +13,7 @@ class AuthController {
   Future<void> singUp(
       String name, String email, String password, BuildContext context) async {
     try {
+      print("" + name + " " + email + " " + password);
       final User user = User(
           id: const Uuid().v4().toString(),
           name: name,
@@ -22,6 +23,7 @@ class AuthController {
       storage.write('user_id', user.id);
       Modular.to.navigate('/home');
     } catch (e) {
+      print('Deu erro' + e.toString());
       showSnackBar(BuildContext context) async {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("Email ou Senha Incorreta"),
