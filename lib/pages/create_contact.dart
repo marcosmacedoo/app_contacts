@@ -82,7 +82,7 @@ class _CreateContact extends State<CreateContact> {
                         _lastNameController.text,
                         double.parse(_latitudeController.text),
                         double.parse(_longitudeController.text));
-                    Navigator.pop(context);
+                    Navigator.pop(context, true);
                   }),
             ],
           ),

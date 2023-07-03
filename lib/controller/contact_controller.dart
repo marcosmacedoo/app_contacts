@@ -15,26 +15,24 @@ class ContactController {
 
   ContactController(this.controller, this.storage, this.repository);
 
+  ValueNotifier<List<Contact>> contact = ValueNotifier([]);
+
   Future<void> createContact(String name, String phone, String lastname,
       double latitude, double longitude) async {
     final userId = await storage.read('user_id');
     final Contact contact = Contact(
         name: name,
-        lastname: lastname,
         phone: phone,
         id: const Uuid().v4(),
         latitude: latitude,
         longitude: longitude,
         userId: userId!);
-
     await repository.insertContact(contact);
-
-    Modular.to.canPop();
   }
 
   Future<Contact?> detailContact(String id) async {
-    final Contact? detailContanct = await repository.detailContact(id);
-    return detailContanct;
+    final Contact? detailContact = await repository.detailContact(id);
+    return detailContact;
   }
 
   Future<void> updateContact(Contact updContact) async {
@@ -43,5 +41,9 @@ class ContactController {
 
   Future<void> deleteContact(String id) async {
     await repository.deleteContact(id);
+  }
+
+  Future<void> fetchContacts() async {
+    contact.value = await repository.fetchContacts();
   }
 }

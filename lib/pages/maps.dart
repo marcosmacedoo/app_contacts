@@ -1,5 +1,7 @@
 import "dart:async";
+import "package:app_contacts/controller/map_controller.dart";
 import "package:flutter/material.dart";
+import "package:flutter_modular/flutter_modular.dart";
 import "package:google_maps_flutter/google_maps_flutter.dart";
 import "package:geolocator/geolocator.dart";
 
@@ -13,57 +15,40 @@ class Maps extends StatefulWidget {
 class _Maps extends State<Maps> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
-  Position? _currentPosition;
-  String? _currentAddress;
+  final _controllerMap = Modular.get<MapsController>();
 
   @override
   void initState() {
+    loadingMarkers();
     super.initState();
-    carregarMarcadores();
-    _localizacaoAtual();
   }
 
-  _localizacaoAtual() async {
-    Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-    print('Localização: ' + position.toString());
-  }
-
-  Set<Marker> _marcadores = {};
-  carregarMarcadores() {
-    Set<Marker> marcadoresLocal = {};
-    Marker marcadoIfpi = Marker(
-      markerId: MarkerId('IFPI'),
-      position: LatLng(-5.088544046019581, -42.81123803149089),
-    );
-    Marker marcadoIfpiSul = Marker(
-      markerId: MarkerId('IFPI'),
-      position: LatLng(-5.101723, -42.813114),
-    );
-    marcadoresLocal.add(marcadoIfpi);
-    marcadoresLocal.add(marcadoIfpiSul);
-    setState(() {
-      _marcadores = marcadoresLocal;
-    });
+  loadingMarkers() async {
+    await _controllerMap.listenAllMarkers();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        myLocationEnabled: true,
-        mapType: MapType.normal,
-        initialCameraPosition: CameraPosition(
-          target: LatLng(-5.088544046019581,
-              -42.81123803149089), // Posição inicial do mapa
-          zoom: 15,
-        ),
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-        markers: _marcadores,
-      ),
+      body: Stack(children: [
+        ValueListenableBuilder(
+            valueListenable: _controllerMap.markers,
+            builder: (context, value, child) {
+              return GoogleMap(
+                myLocationEnabled: true,
+                mapType: MapType.normal,
+                initialCameraPosition: const CameraPosition(
+                  target: LatLng(-5.088544046019581,
+                      -42.81123803149089), // Posição inicial do mapa
+                  zoom: 15,
+                ),
+                onMapCreated: (controller) {
+                  _controllerMap.mapController = controller;
+                },
+                markers: _controllerMap.markers.value,
+              );
+            }),
+      ]),
     );
   }
 }
