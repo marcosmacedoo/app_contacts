@@ -31,33 +31,36 @@ class _CreateUserScreen extends State<CreateUserScreen> {
         centerTitle: true,
       ),
       body: Center(
-          child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Image(
-              width: 88,
-              image: NetworkImage(
-                  'https://pbs.twimg.com/profile_images/438771627854024704/Az4OY07a_400x400.png'),
-            ),
-            InputLarge(
-                controller: _nameController,
-                keyboardType: TextInputType.name,
-                labelText: 'Nome'),
-            InputLarge(
-                controller: _emailController,
-                keyboardType: TextInputType.name,
-                labelText: 'Email'),
-            InputLarge(
-                controller: _passwordController,
-                keyboardType: TextInputType.name,
-                labelText: 'Senha'),
-            PrimaryButton(
-              labelText: "Cadastrar",
-              onPressed: _signup,
-            )
-          ],
+          child: SingleChildScrollView(
+        reverse: true,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Image(
+                width: 88,
+                image: NetworkImage(
+                    'https://pbs.twimg.com/profile_images/438771627854024704/Az4OY07a_400x400.png'),
+              ),
+              InputLarge(
+                  controller: _nameController,
+                  keyboardType: TextInputType.name,
+                  labelText: 'Nome'),
+              InputLarge(
+                  controller: _emailController,
+                  keyboardType: TextInputType.name,
+                  labelText: 'Email'),
+              InputLarge(
+                  controller: _passwordController,
+                  keyboardType: TextInputType.name,
+                  labelText: 'Senha'),
+              PrimaryButton(
+                labelText: "Cadastrar",
+                onPressed: _signup,
+              )
+            ],
+          ),
         ),
       )),
     );
