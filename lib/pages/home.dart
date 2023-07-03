@@ -77,9 +77,7 @@ class _HomeScreen extends State<HomeScreen> {
                             height: 100,
                             child: ElevatedButton.icon(
                               onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const Maps(),
-                                ));
+                                Modular.to.pushNamed('/home/maps');
                               },
                               icon: const Icon(
                                 Icons.map,
