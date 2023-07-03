@@ -29,12 +29,6 @@ class CardContact extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.edit,
-                        color: Colors.indigo,
-                      )),
-                  IconButton(
                       onPressed: () {
                         _controller.deleteContact(id);
                       },
