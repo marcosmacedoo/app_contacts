@@ -1,9 +1,25 @@
+import 'package:app_contacts/controller/contact_controller.dart';
+import 'package:app_contacts/core/components/card_contact.dart';
+import 'package:app_contacts/core/models/contact.dart';
 import 'package:app_contacts/pages/create_contact.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class ContactsScreen extends StatelessWidget {
+class ContactsScreen extends StatefulWidget {
   const ContactsScreen({super.key});
+
+  @override
+  State<ContactsScreen> createState() => _ContactsScreen();
+}
+
+class _ContactsScreen extends State<ContactsScreen> {
+  final _controller = Modular.get<ContactController>();
+
+  @override
+  void initState() {
+    _controller.fetchContacts();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,36 +38,25 @@ class ContactsScreen extends StatelessWidget {
           backgroundColor: Colors.yellow,
           child: const Icon(Icons.add)),
       body: Center(
-          child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
-        children: [
-          Card(
-              elevation: 0,
-              child: ListTile(
-                // leading: const Icon(Icons.person),
-                title: const Text('Marcos Macedo'),
-                subtitle: const Text('(86) 9 9502-8103'),
-                // iconColor: Theme.of(context).colorScheme.inverseSurface,
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.edit,
-                          color: Colors.indigo,
-                        )),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        )),
-                  ],
-                ),
-              ))
-        ],
-      )),
+        child: ValueListenableBuilder(
+            valueListenable: _controller.contact,
+            builder:
+                (BuildContext context, List<Contact> value, Widget? child) {
+              return value.isEmpty
+                  ? const Center(
+                      child: Text('Adicione seus contatos'),
+                    )
+                  : ListView.builder(
+                      itemCount: value.length,
+                      itemBuilder: (context, index) {
+                        return CardContact(
+                            name: value[index].name,
+                            phone: value[index].phone,
+                            id: value[index].id);
+                      },
+                    );
+            }),
+      ),
     );
   }
 }

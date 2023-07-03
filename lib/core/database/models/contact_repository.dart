@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:app_contacts/core/services/secure_store.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../models/contact.dart';
@@ -6,7 +7,8 @@ import '../db.dart';
 
 class ContactRepository {
   final DatabaseImpl _database;
-  ContactRepository(this._database);
+  final SecureStorage storage;
+  ContactRepository(this._database, this.storage);
 
   Future<void> insertContact(Contact contact) async {
     final db = await _database.database;
@@ -58,10 +60,28 @@ class ContactRepository {
       (i) => Contact(
           id: items[i]['id'],
           phone: items[i]['phone'],
-          lastname: items[i]['lastname'],
           latitude: items[i]['latitude'],
           longitude: items[i]['longitude'],
           name: items[i]['name'],
+          userId: items[i]['user_id']),
+    );
+  }
+
+  Future<List<Contact>> fetchContacts() async {
+    final userId = await storage.read("user_id");
+    final db = await _database.database;
+
+    List<Map<String, dynamic>> items =
+        await db.query('contacts', where: 'user_id = ?', whereArgs: [userId]);
+    print(items);
+    return List.generate(
+      items.length,
+      (i) => Contact(
+          id: items[i]['id'],
+          name: items[i]['name'],
+          phone: items[i]['phone'],
+          latitude: items[i]['latitude'],
+          longitude: items[i]['longitude'],
           userId: items[i]['user_id']),
     );
   }

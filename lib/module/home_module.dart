@@ -20,7 +20,7 @@ class HomeModule extends Module {
         Bind.singleton((i) => HomeRepository(i.get<SecureStorage>())),
         Bind.singleton((i) => ContactController(i.get<AppController>(),
             i.get<SecureStorage>(), i.get<ContactRepository>())),
-        Bind((i) => ContactRepository(i.get()))
+        Bind((i) => ContactRepository(i.get(), i.get<SecureStorage>()))
       ];
 
   @override
